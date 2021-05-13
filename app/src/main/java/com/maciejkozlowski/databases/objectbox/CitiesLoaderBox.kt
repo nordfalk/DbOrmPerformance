@@ -19,11 +19,11 @@ class CitiesLoaderBox : BaseLoader<CityBox>() {
 
         logger.start()
         boxStore.put(cities)
-        logger.logTime(resultSet.creating, INSERT_CITIES, size)
+        logger.logTime(resultSet.creating, size)
 
         logger.start()
         val citiesBox = boxStore.all
-        logger.logTime(resultSet.reading, READ_CITIES, size)
+        logger.logTime(resultSet.reading, size)
 
 
         logger.start()
@@ -31,11 +31,11 @@ class CitiesLoaderBox : BaseLoader<CityBox>() {
             citiesBox[i].name = i.toString()
         }
         boxStore.put(citiesBox)
-        logger.logTime(resultSet.updating, UPDATE_CITIES, size)
+        logger.logTime(resultSet.updating, size)
 
         logger.start()
         boxStore.removeAll()
-        logger.logTime(resultSet.deleting, DELETE_CITIES, size)
+        logger.logTime(resultSet.deleting, size)
     }
 
     override fun create(id: Long?, name: String, latitude: Double?, longitude: Double?): CityBox {

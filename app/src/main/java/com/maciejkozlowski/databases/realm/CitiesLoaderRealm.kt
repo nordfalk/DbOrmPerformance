@@ -19,11 +19,11 @@ class CitiesLoaderRealm : BaseLoader<CityRealm>() {
         realm.beginTransaction()
         realm.insert(cities)
         realm.commitTransaction()
-        logger.logTime(resultSet.creating, BaseLoader.INSERT_CITIES, size)
+        logger.logTime(resultSet.creating, size)
 
         logger.start()
         val cityRealms = realm.where(CityRealm::class.java).findAll()
-        logger.logTime(resultSet.reading, BaseLoader.READ_CITIES, size)
+        logger.logTime(resultSet.reading, size)
 
         logger.start()
         realm.beginTransaction()
@@ -31,13 +31,13 @@ class CitiesLoaderRealm : BaseLoader<CityRealm>() {
             cityRealm.name = index.toString()
         }
         realm.commitTransaction()
-        logger.logTime(resultSet.updating, BaseLoader.UPDATE_CITIES, size)
+        logger.logTime(resultSet.updating, size)
 
         logger.start()
         realm.beginTransaction()
         realm.delete(CityRealm::class.java)
         realm.commitTransaction()
-        logger.logTime(resultSet.deleting, BaseLoader.DELETE_CITIES, size)
+        logger.logTime(resultSet.deleting, size)
     }
 
     override fun create(id: Long?, name: String, latitude: Double?, longitude: Double?): CityRealm {

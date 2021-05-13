@@ -17,22 +17,22 @@ class CitiesLoaderRoom : BaseLoader<CityRoom>() {
 
         logger.start()
         database.insertAll(cities)
-        logger.logTime(resultSet.creating, INSERT_CITIES, size)
+        logger.logTime(resultSet.creating, size)
 
         logger.start()
         val cityRoomList = database.getAll()
-        logger.logTime(resultSet.reading, READ_CITIES, size)
+        logger.logTime(resultSet.reading, size)
 
         logger.start()
         for (i in cityRoomList.indices) {
             cityRoomList[i].name = i.toString()
         }
         database.update(cityRoomList)
-        logger.logTime(resultSet.updating, UPDATE_CITIES, size)
+        logger.logTime(resultSet.updating, size)
 
         logger.start()
         database.deleteAll()
-        logger.logTime(resultSet.deleting, DELETE_CITIES, size)
+        logger.logTime(resultSet.deleting, size)
     }
 
     override fun create(id: Long?, name: String, latitude: Double?, longitude: Double?): CityRoom {

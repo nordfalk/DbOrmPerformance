@@ -2,9 +2,7 @@ package com.maciejkozlowski.databases
 
 import android.app.Application
 import androidx.room.Room
-import com.maciejkozlowski.databases.greendao.DaoMaster
-import com.maciejkozlowski.databases.greendao.DaoSession
-import com.maciejkozlowski.databases.greendao.DevOpenHelper
+import com.maciejkozlowski.databases.serialisering.DevOpenHelper
 import com.maciejkozlowski.databases.objectbox.MyObjectBox
 import com.maciejkozlowski.databases.room.CityRoomDatabase
 import io.objectbox.BoxStore
@@ -17,8 +15,6 @@ class MyApplication : Application() {
 
     lateinit var boxStore: BoxStore private set
 
-    lateinit var daoSession: DaoSession private set
-
     lateinit var realm: Realm private set
 
     lateinit var room: CityRoomDatabase private set
@@ -28,10 +24,6 @@ class MyApplication : Application() {
         boxStore = MyObjectBox.builder().androidContext(this).build()
 
         val helper = DevOpenHelper(this)
-        val db = helper.writableDb
-        val daoMaster = DaoMaster(db)
-        daoSession = daoMaster.newSession()
-        DaoMaster.createAllTables(daoMaster.database, true)
 
         Realm.init(this)
         realm = Realm.getDefaultInstance()

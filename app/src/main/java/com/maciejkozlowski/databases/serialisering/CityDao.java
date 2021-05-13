@@ -1,34 +1,19 @@
-package com.maciejkozlowski.databases.greendao;
+package com.maciejkozlowski.databases.serialisering;
 
-import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Id;
-import org.greenrobot.greendao.annotation.Keep;
-import org.greenrobot.greendao.annotation.Generated;
+import java.io.Serializable;
 
-/**
- * Created by Maciej Kozłowski on 01.05.17.
- *
- * It has to stay as Java class.
- */
-@Entity
-public class CityDao {
+public class CityDao implements Serializable {
 
-    @Id
     private long id;
     private String name;
     private double latitude;
     private double longitude;
 
-    @Keep
     public CityDao(long cityId, String name, double latitude, double longitude) {
         this.id = cityId;
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
-    }
-
-    @Generated(hash = 1672831395)
-    public CityDao() {
     }
 
     public long getId() {

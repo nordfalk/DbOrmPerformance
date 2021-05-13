@@ -17,22 +17,22 @@ class CitiesLoaderSql : BaseLoader<CitySql>() {
 
         logger.start()
         database.set(cities)
-        logger.logTime(resultSet.creating, INSERT_CITIES, size)
+        logger.logTime(resultSet.creating, size)
 
         logger.start()
         val citySqls = database.get()
-        logger.logTime(resultSet.reading, READ_CITIES, size)
+        logger.logTime(resultSet.reading, size)
 
         logger.start()
         for (i in citySqls.indices) {
             citySqls[i].name = i.toString()
         }
         database.update(citySqls)
-        logger.logTime(resultSet.updating, UPDATE_CITIES, size)
+        logger.logTime(resultSet.updating, size)
 
         logger.start()
         database.dropAndCreate()
-        logger.logTime(resultSet.deleting, DELETE_CITIES, size)
+        logger.logTime(resultSet.deleting, size)
     }
 
     override fun create(id: Long?, name: String, latitude: Double?, longitude: Double?): CitySql {
@@ -45,6 +45,6 @@ class CitiesLoaderSql : BaseLoader<CitySql>() {
 
     companion object {
 
-        const val TAG = "sql"
+        const val TAG = "sqlite"
     }
 }

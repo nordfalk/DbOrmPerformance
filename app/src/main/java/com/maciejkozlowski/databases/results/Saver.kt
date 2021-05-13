@@ -6,6 +6,7 @@ import android.util.Log
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
+import java.lang.StringBuilder
 
 
 /**
@@ -15,6 +16,7 @@ import java.io.IOException
 class Saver {
 
     private var outputStream: FileOutputStream? = null
+    private var outputStreamWriter: StringBuilder? = null
     private var opened: Boolean = false
 
     fun open() {
@@ -26,6 +28,7 @@ class Saver {
                 }
 
                 outputStream = FileOutputStream(file)
+                outputStreamWriter = StringBuilder()
                 opened = true
             } catch (e: IOException) {
                 e.printStackTrace()
@@ -35,6 +38,7 @@ class Saver {
     }
 
     fun write(data: String) {
+        outputStreamWriter!!.append(data)
         if (opened) {
             try {
                 outputStream!!.write(data.toByteArray())
@@ -57,6 +61,7 @@ class Saver {
             }
 
         }
+        Log.e(TAG, outputStreamWriter.toString())
     }
 
     fun save(resultSet: ResultSet) {

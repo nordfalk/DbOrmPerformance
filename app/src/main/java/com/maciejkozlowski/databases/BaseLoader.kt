@@ -13,7 +13,7 @@ abstract class BaseLoader<T> {
 
     protected val logger = createTimingLogger()
 
-    protected fun readFromFile(context: Context, file: String, size: Int): List<T> {
+    protected fun readFromFile(context: Context, file: String, size: Int): ArrayList<T> {
         val result = ArrayList<T>()
         var reader: BufferedReader? = null
         try {
@@ -55,11 +55,6 @@ abstract class BaseLoader<T> {
     protected abstract fun createTimingLogger(): Timings
 
     companion object {
-
-        val DELETE_CITIES = "delete"
-        val INSERT_CITIES = "insert"
-        val UPDATE_CITIES = "update"
-        val READ_CITIES = "read"
 
         val CITIES_CSV = "cities.csv"
     }

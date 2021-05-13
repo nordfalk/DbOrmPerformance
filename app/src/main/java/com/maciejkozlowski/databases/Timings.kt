@@ -15,7 +15,7 @@ class Timings(private val tag: String) {
         start = System.currentTimeMillis()
     }
 
-    fun logTime(result: Result, label: String, size: Int) {
+    fun logTime(result: Result, size: Int) {
         val time = System.currentTimeMillis() - start
         //log("$label: $time")
         result.addTime("$size-$tag", time)
