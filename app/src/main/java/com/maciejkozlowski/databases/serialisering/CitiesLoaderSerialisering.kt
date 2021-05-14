@@ -35,7 +35,8 @@ class CitiesLoaderSerialisering : BaseLoader<CityDao>() {
         logger.logTime(resultSet.updating, size)
 
         logger.start()
-        DiskCache.delete(DATABASE_NAME)
+        cities.clear()
+        DiskCache.save(DATABASE_NAME, cities)
         logger.logTime(resultSet.deleting, size)
     }
 

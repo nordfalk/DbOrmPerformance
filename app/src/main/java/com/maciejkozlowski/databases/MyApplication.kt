@@ -2,7 +2,6 @@ package com.maciejkozlowski.databases
 
 import android.app.Application
 import androidx.room.Room
-import com.maciejkozlowski.databases.serialisering.DevOpenHelper
 import com.maciejkozlowski.databases.objectbox.MyObjectBox
 import com.maciejkozlowski.databases.room.CityRoomDatabase
 import io.objectbox.BoxStore
@@ -22,8 +21,6 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         boxStore = MyObjectBox.builder().androidContext(this).build()
-
-        val helper = DevOpenHelper(this)
 
         Realm.init(this)
         realm = Realm.getDefaultInstance()
